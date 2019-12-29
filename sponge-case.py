@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 import sys
 import random
-loopno = 0
-if len(sys.argv) > 1:#If the user specified a file, open it and use it, else use standard input
-    filehandle = open(sys.argv[1])
-    Original = filehandle.read()
-    filehandle.close()
+#loopno = 0
+if len(sys.argv) > 1:#If the user specified file(s), open them and use them, else use standard input
+    Original = ""
+    for loopyfile in sys.argv:
+        filehandle = open(loopyfile)
+        Original += filehandle.read()
+        filehandle.close()
 else:
     Original = sys.stdin.read()
 ansi = False
@@ -23,5 +25,5 @@ for chara in Original:
             print(chara.lower(),end="")
         else:
             print(chara.upper(),end="")
-    loopno += 1
+    #loopno += 1
 exit()
