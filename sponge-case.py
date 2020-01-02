@@ -4,7 +4,8 @@ import random
 #loopno = 0
 if len(sys.argv) > 1:#If the user specified file(s), open them and use them, else use standard input
     Original = ""
-    for loopyfile in sys.argv:
+    FileList = sys.argv[1:]#Remove the first argument, since that will be the command
+    for loopyfile in FileList:
         filehandle = open(loopyfile)
         Original += filehandle.read()
         filehandle.close()
