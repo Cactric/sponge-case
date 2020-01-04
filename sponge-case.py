@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import sys
 import random
-Options = {"help":False,"frequency":0,"random":True,"protectansi":True}
+Options = {"help":False,"frequency":0,"random":True,"protectansi":True,"onlyletters":False}
 if len(sys.argv) > 1:#If the user specified arguments, see if they're file(s), open them and use them, else use standard input
     Original = ""
     FileList = sys.argv[1:]#Remove the first argument, since that will be the command
@@ -13,6 +13,8 @@ if len(sys.argv) > 1:#If the user specified arguments, see if they're file(s), o
                 Options["help"] = True
             elif loopyfile == "--disableansichecking" or loopyfile == "-d":
                 Options["protectansi"] = False
+            elif loopyfile == "-o" or loopyfile == "--onlyletters":
+                Options["onlyletters"] = True
             elif loopyfile == "-f" or loopyfile == "--frequency":
                 OptionArgument = True
                 OptionToModify = "frequency"
@@ -54,5 +56,9 @@ for chara in Original:
             print(chara.lower(),end="")
         else:
             print(chara.upper(),end="")
-    loopno += 1
+    if Options["onlyletters"]:
+        if chara.isalpha():
+            loopno += 1#If --onlyletters or -o is supplied, only increment the counter if the character's a letter
+    else:
+        loopno += 1
 exit()
