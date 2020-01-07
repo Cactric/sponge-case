@@ -2,8 +2,8 @@
 import sys
 import random
 Options = {"help":False,"frequency":0,"random":True,"protectansi":True,"onlyletters":False}
+Original = ""
 if len(sys.argv) > 1:#If the user specified arguments, see if they're file(s), open them and use them, else use standard input
-    Original = ""
     FileList = sys.argv[1:]#Remove the first argument, since that will be the command
     OptionArgument = False
     OptionToModify = ""
